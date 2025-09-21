@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Joaquim Bernat Crespi</title>
+  <meta name="description" content="Portfolio profesional — Recreación e integración de espacios 3D en realidad virtual (TFG) — Joaquim Bernat Crespi Menayo" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1:#041524; --bg-2:#081827; --card:#08121a; --glass:rgba(255,255,255,0.04);
+      --accent-a:#22c1c3; --accent-b:#6ee7b7; --muted:#9fb1b8; --text:#e6f7f7;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue';color:var(--text);background:radial-gradient(1200px 600px at 10% 10%, rgba(12,34,44,0.6), transparent), linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .wrap{max-width:1200px;margin:28px auto;padding:22px;position:relative;z-index:2}
+    header{display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;font-weight:800;color:#042022;font-family:Poppins;font-size:20px}
+    nav{display:flex;gap:12px;align-items:center}
+    .nav-link{padding:8px 12px;border-radius:10px;color:var(--muted);font-size:14px;text-decoration:none}
+    .controls{display:flex;gap:10px;align-items:center}
+    .hero{display:grid;grid-template-columns:1fr 460px;gap:28px;align-items:start;margin-top:22px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02), rgba(2,8,12,0.12));padding:24px;border-radius:16px;box-shadow:0 12px 40px rgba(2,6,23,0.6);backdrop-filter: blur(8px)}
+    h1,h2,h3{margin:0;font-family:Poppins}
+    .subtitle{color:var(--muted);margin-top:4px}
+    .preview{height:520px;border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#041827,#02202b);display:flex;flex-direction:column;position:relative}
+    .preview .frame{flex:1;display:flex;align-items:center;justify-content:center;padding:18px}
+    .preview img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 8px 30px rgba(2,6,12,0.6)}
+    .badge{position:absolute;right:22px;top:18px;background:rgba(0,0,0,0.28);padding:8px 12px;border-radius:10px;font-size:13px;color:var(--muted)}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .thumb{height:150px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.04));display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,0.03);position:relative}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .timeline{display:grid;gap:12px}
+    .step{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+    .num{width:40px;height:40px;border-radius:8px;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;font-weight:700;color:#042022}
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left;font-size:14px}
+    th{color:var(--muted);font-weight:600}
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:9px 14px;border-radius:12px;color:var(--muted);cursor:pointer;font-size:14px}
+    .btn.primary{background:linear-gradient(90deg,var(--accent-a),var(--accent-b));color:#042022;border:0}
+    .btn.ghost{background:transparent;border:1px dashed rgba(255,255,255,0.04)}
+    .reveal{opacity:0;transform:translateY(14px) scale(.995);transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.2,1)}
+    .reveal.show{opacity:1;transform:none}
+    #preloader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#021518,#041827);z-index:9999}
+    .loader{width:120px;height:120px;border-radius:18px;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;font-family:Poppins;color:#042022;font-weight:800;font-size:20px;box-shadow:0 10px 40px rgba(2,6,12,0.7)}
+    #particle-canvas{position:fixed;right:0;top:0;left:0;bottom:0;z-index:0;pointer-events:none}
+    #lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:9998}
+    #lightbox img{max-width:92%;max-height:92%;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,0.8)}
+    #lightbox.show{display:flex}
+    @media(max-width:980px){.hero{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}.preview{height:360px}}
+  </style>
+</head>
+<body>
+  <canvas id="particle-canvas"></canvas>
+  <div id="preloader">
+    <div class="loader">JC<small>Portfolio</small></div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">JC</div>
+        <div>
+          <h1 data-i18n="brand.title">Joaquim Bernat Crespi</h1>
+          <div class="subtitle" data-i18n="brand.subtitle">TFG — Recreación e integración de espacios 3D en VR</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <nav>
+          <a class="nav-link" href="#about" data-i18n="nav.about">Proyecto</a>
+          <a class="nav-link" href="#method" data-i18n="nav.method">Metodología</a>
+          <a class="nav-link" href="#results" data-i18n="nav.results">Resultados</a>
+          <a class="nav-link" href="#gallery" data-i18n="nav.gallery">Galería</a>
+          <a class="nav-link" href="#contact" data-i18n="nav.contact">Contacto</a>
+        </nav>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn" id="lang-es">ES</button>
+          <button class="btn" id="lang-en">EN</button>
+          <button class="btn primary" id="download-cv" data-i18n="btn.download">Descargar PDF</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="card reveal">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+            <div>
+              <div class="meta" data-i18n="meta.role">Final Degree Project — Multimedia Engineering</div>
+              <h2 style="margin-top:10px" data-i18n="hero.headline">Recreación y visualización 3D para RV — Experiencias exploratorias.</h2>
+              <div class="subtitle" data-i18n="hero.subtitle">Autor: Joaquim Bernat Crespi Menayo — Julio 2025</div>
+            </div>
+            <div style="text-align:right">
+              <div class="meta" data-i18n="meta.tutor">Tutor: Miguel Ángel Cazorla & Félix Escalona</div>
+              <div style="margin-top:8px;font-size:13px;color:var(--muted)" data-i18n="meta.location">Escuela Politécnica Superior — Alicante</div>
+            </div>
+          </div>
+
+          <p style="margin-top:16px;color:var(--muted)" data-i18n="about.preamble">Presento un estudio completo sobre captura, entrenamiento (Gaussian Splatting) y la integración de escenas 3D en Unity para visores standalone, con enfoque en experiencia exploratoria y aplicabilidad práctica.</p>
+
+          <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+            <button class="btn" onclick="document.getElementById('method').scrollIntoView({behavior:'smooth'})" data-i18n="cta.method">Ver metodología</button>
+            <button class="btn" onclick="document.getElementById('results').scrollIntoView({behavior:'smooth'})" data-i18n="cta.results">Ver resultados</button>
+            <button class="btn ghost" id="view-demo" data-i18n="cta.demo">Ver demo (si está disponible)</button>
+          </div>
+
+          <div style="margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+            <div class="feature">
+              <strong data-i18n="feat.capture">Captura</strong>
+              <div class="meta" data-i18n="feat.capture.desc">Insta360 X4, iPhone 13 y DJI Spark — estrategias 360° y aéreas para escenas interiores y exteriores.</div>
+            </div>
+            <div class="feature">
+              <strong data-i18n="feat.processing">Procesado</strong>
+              <div class="meta" data-i18n="feat.processing.desc">COLMAP → Postshot → Gaussian Splatting — optimización de tamaño y rendimiento para VR.</div>
+            </div>
+            <div class="feature">
+              <strong data-i18n="feat.integration">Integración</strong>
+              <div class="meta" data-i18n="feat.integration.desc">Unity + OpenXR + XR Interaction Toolkit — hand tracking, teletransporte y exploración.</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="preview reveal float">
+          <div class="frame" id="hero-frame">
+            <img id="preview-img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='880' height='520'><rect width='100%' height='100%' fill='%2306151a'/><text x='50%' y='48%' fill='%238fbfc3' font-size='20' font-family='Arial' text-anchor='middle'>Galería / capturas (sustituir por imágenes del TFG)</text></svg>" alt="preview"/>
+            <div class="badge" data-i18n="badge.bilingual">Bilingüe ES / EN</div>
+          </div>
+          <div style="padding:12px;border-top:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:8px">
+              <button class="btn" id="open-gallery" data-i18n="btn.gallery">Abrir galería</button>
+              <button class="btn" id="open-tech" data-i18n="btn.tech">Ver detalles técnicos</button>
+            </div>
+            <div style="color:var(--muted);font-size:13px">Ready to deploy</div>
+          </div>
+        </aside>
+      </div>
+
+      <section id="method" class="card reveal" style="margin-top:18px">
+        <h3 data-i18n="method.title">Metodología detallada</h3>
+        <p class="meta" data-i18n="method.summary">Metodología adaptada de Scrum: sprints quincenales con reuniones de seguimiento con tutores; herramientas de gestión y productividad como Trello, Clockify y Slack fueron integradas en el flujo de trabajo.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:14px">
+          <div>
+            <h4 data-i18n="method.capture.title">Captura (estrategias)</h4>
+            <p data-i18n="method.capture.desc">Se combinaron capturas equirectangulares en 360° para espacios cerrados y fotografías convencionales en múltiples posiciones y alturas (por ejemplo, 29 capturas en espacios reducidos) para asegurar cobertura angular y detalle en texturas. Para exteriores se utilizaron vuelos de dron alrededor del elemento central (puente en Colmenar Viejo).</p>
+
+            <h4 style="margin-top:12px" data-i18n="method.processing.title">Procesado y entrenamiento</h4>
+            <p data-i18n="method.processing.desc">Workflow: COLMAP (SfM) → Postshot (entrenamiento y configuración) → Gaussian Splatting (exportación de splats optimizados). En uno de los entrenamientos del dron se limitaron las imágenes a 1600px y kSteps a 30; tiempo de entrenamiento ≈ 2h24m (configuración de ejemplo).</p>
+
+            <h4 style="margin-top:12px" data-i18n="method.integration.title">Integración en Unity</h4>
+            <p data-i18n="method.integration.desc">Partiendo de un proyecto base (UnityGaussianSplatting variants), se añadieron sistemas XR (OpenXR, XR Interaction Toolkit), manejo de GaussianSplats como assets, teletransporte, hand tracking y optimizaciones para Meta Quest 2.</p>
+
+          </div>
+
+          <aside style="padding:14px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.03)">
+            <h4 data-i18n="method.tools.title">Herramientas &amp; dispositivos</h4>
+            <table>
+              <thead><tr><th data-i18n="tbl.device">Dispositivo</th><th data-i18n="tbl.specs">Especificaciones clave</th></tr></thead>
+              <tbody>
+                <tr><td>Insta360 X4</td><td data-i18n="tbl.insta">~72 MP equivalentes, FlowState, 8K capture (configuraciones usadas para 360°).</td></tr>
+                <tr><td>iPhone 13</td><td data-i18n="tbl.iphone">Lente principal 12 MP, OIS, Smart HDR 4 — usado para capturas móviles de alta calidad.</td></tr>
+                <tr><td>DJI Spark</td><td data-i18n="tbl.spark">Capturas aéreas para reconstrucciones exteriores; estrategia de orbitar el objeto central.</td></tr>
+                <tr><td>Software</td><td>COLMAP, Postshot, Reality Capture, Unity, OpenXR, XR Interaction Toolkit.</td></tr>
+              </tbody>
+            </table>
+            <p style="margin-top:10px;color:var(--muted);font-size:13px" data-i18n="method.note">Nota: varias configuraciones experimentales se registraron en el documento técnico.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="results" class="card reveal" style="margin-top:18px">
+        <h3 data-i18n="results.title">Resultados destacados</h3>
+        <ol>
+          <li data-i18n="results.r1">Escenarios recreados con alta fidelidad: biblioteca, sala de posgrado, laboratorio y puente (Colmenar Viejo). Las reconstrucciones permiten exploración y análisis espacial.</li>
+          <li data-i18n="results.r2">Integración en RV con teletransporte, hand tracking y herramientas de ambientación para aumentar inmersión y navegación.</li>
+          <li data-i18n="results.r3">Elección técnica: Gaussian Splatting demostró ser la mejor alternativa por su velocidad de renderizado y facilidad de exportación a motores (ventajas frente a NeRF en este contexto).</li>
+        </ol>
+        <p class="meta" data-i18n="results.summary">Se muestran capturas de configuración, ejemplos de parámetros y métricas de tiempo en la documentación técnica adjunta.</p>
+      </section>
+
+      <section class="card reveal" style="margin-top:18px">
+        <h3 data-i18n="process.title">Flujo de trabajo (timeline)</h3>
+        <div class="timeline" style="margin-top:12px">
+          <div class="step"><div class="num">1</div><div><strong data-i18n="process.step1.title">Planificación</strong><div class="meta" data-i18n="process.step1.desc">Sprints quincenales, objetivos y herramientas (Trello, Clockify).</div></div></div>
+          <div class="step"><div class="num">2</div><div><strong data-i18n="process.step2.title">Captura</strong><div class="meta" data-i18n="process.step2.desc">Recorridos 360°, tomas estructuradas y vuelos de dron para cobertura completa.</div></div></div>
+          <div class="step"><div class="num">3</div><div><strong data-i18n="process.step3.title">Entrenamiento</strong><div class="meta" data-i18n="process.step3.desc">COLMAP → Postshot → Gaussian Splatting: optimización de splats y compresión.</div></div></div>
+          <div class="step"><div class="num">4</div><div><strong data-i18n="process.step4.title">Integración</strong><div class="meta" data-i18n="process.step4.desc">Importación en Unity, prueba en Meta Quest 2 y ajuste de interacción.</div></div></div>
+        </div>
+      </section>
+
+      <section id="gallery" class="card reveal" style="margin-top:18px">
+        <h3 data-i18n="gallery.title">Galería / Capturas</h3>
+        <p class="meta" data-i18n="gallery.hint">Sustituye las miniaturas por screenshots exportadas del PDF o builds Unity para mostrar evidencia del trabajo.</p>
+        <div class="gallery" id="gallery-grid" style="margin-top:12px">
+          <div class="thumb" data-src="rua-thumb-1.jpg"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='260'><rect width='100%' height='100%' fill='%23081418'/><text x='50%' y='50%' fill='%238fbfc3' font-size='14' font-family='Arial' text-anchor='middle'>Thumbnail 1 — sustituir</text></svg>"/></div>
+          <div class="thumb" data-src="rua-thumb-2.jpg"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='260'><rect width='100%' height='100%' fill='%23081418'/><text x='50%' y='50%' fill='%238fbfc3' font-size='14' font-family='Arial' text-anchor='middle'>Thumbnail 2 — sustituir</text></svg>"/></div>
+          <div class="thumb" data-src="rua-thumb-3.jpg"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='260'><rect width='100%' height='100%' fill='%23081418'/><text x='50%' y='50%' fill='%238fbfc3' font-size='14' font-family='Arial' text-anchor='middle'>Thumbnail 3 — sustituir</text></svg>"/></div>
+        </div>
+      </section>
+
+      <section id="tech" class="card reveal" style="margin-top:18px">
+        <h3 data-i18n="tech.title">Detalles técnicos &amp; referencias</h3>
+        <p class="meta" data-i18n="tech.note">Listado con parámetros de entrenamiento, configuración Postshot y scripts usados para convertir panorámicas equirectangulares.</p>
+        <p style="margin-top:10px;color:var(--muted);font-size:13px" data-i18n="tech.papers">Referencias clave incluidas en la bibliografía del TFG: NeRF, Instant-NGP, Gaussian Splatting, documentación de Unity y guías de captura.</p>
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" id="download-full" data-i18n="btn.fullpdf">Descargar TFG (PDF)</button>
+          <button class="btn" id="export-zip" data-i18n="btn.export">Exportar ZIP listo (index + assets)</button>
+        </div>
+      </section>
+
+      <section id="contact" class="card reveal" style="margin-top:18px;display:flex;gap:16px;align-items:center">
+        <div style="flex:1">
+          <h4 data-i18n="contact.title">Contacto</h4>
+          <p class="meta" data-i18n="contact.author">Joaquim Bernat Crespi Menayo — Autor del TFG (Julio 2025)</p>
+          <p class="meta" data-i18n="contact.call">Incluye email, LinkedIn o GitHub para completar el footer de contacto.</p>
+        </div>
+        <div style="width:200px;text-align:right">
+          <button class="btn" id="open-cv" data-i18n="btn.openpdf">Ver PDF completo</button>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="reveal" data-i18n="footer">© Joaquim Bernat — Portfolio generado a partir del TFG. Listo para desplegar en GitHub Pages / Netlify.</footer>
+  </div>
+
+  <div id="lightbox" aria-hidden="true"><img src="" alt="" id="lightbox-img"></div>
+
+  <script>
+    // PRELOADER
+    window.addEventListener('load',()=>{ const pre = document.getElementById('preloader'); pre.style.opacity='0'; pre.style.transition='opacity .6s ease'; setTimeout(()=>pre.remove(),700); });
+
+    // PARTICLES (subtle background)
+    (function(){ const canvas = document.getElementById('particle-canvas'); const ctx = canvas.getContext('2d'); let w,h,particles=[]; function resize(){ w=canvas.width=innerWidth; h=canvas.height=innerHeight } window.addEventListener('resize',resize); resize(); function init(){ particles=[]; for(let i=0;i<64;i++){ particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.6+0.3,vx:(Math.random()-0.5)/2,vy:(Math.random()-0.5)/2,alpha:Math.random()*0.7+0.15}) } } init(); function tick(){ ctx.clearRect(0,0,w,h); for(const p of particles){ p.x+=p.vx; p.y+=p.vy; if(p.x<0) p.x=w; if(p.x>w) p.x=0; if(p.y<0) p.y=h; if(p.y>h) p.y=0; ctx.beginPath(); ctx.fillStyle=`rgba(12,150,147,${p.alpha})`; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(tick); } tick(); })();
+
+    // REVEAL ON SCROLL
+    const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show') }) },{threshold:0.12}); document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // LIGHTBOX
+    const lightbox = document.getElementById('lightbox'); const lbImg = document.getElementById('lightbox-img'); document.querySelectorAll('.thumb').forEach(t=>t.addEventListener('click',()=>{ const src = t.getAttribute('data-src'); lbImg.src = src==='rua-thumb-1.jpg'? 'rua.jpg' : src; lightbox.classList.add('show'); lightbox.setAttribute('aria-hidden','false'); })); lightbox.addEventListener('click',()=>{ lightbox.classList.remove('show'); lightbox.setAttribute('aria-hidden','true'); lbImg.src=''; });
+
+    // NAV BUTTONS
+    document.getElementById('open-gallery').addEventListener('click',()=>{ document.getElementById('gallery').scrollIntoView({behavior:'smooth'}); });
+    document.getElementById('open-tech').addEventListener('click',()=>{ document.getElementById('tech').scrollIntoView({behavior:'smooth'}); });
+
+    // DOWNLOAD/EXPORT
+    document.getElementById('download-cv').addEventListener('click',()=>{ window.open('rua.pdf','_blank'); });
+    document.getElementById('download-full').addEventListener('click',()=>{ window.open('rua.pdf','_blank'); });
+    document.getElementById('open-cv').addEventListener('click',()=>{ window.open('rua.pdf','_blank'); });
+    document.getElementById('export-zip').addEventListener('click',()=>{ alert('Puedo generar ahora mismo un ZIP con index.html, assets y el PDF. ¿Lo quieres?'); });
+    document.getElementById('view-demo').addEventListener('click',()=>{ alert('Si dispones de una build WebGL, sube la carpeta (o proporciona URL) y la integro para que el botón abra el demo.'); });
+
+    // I18N DICTIONARY (complete)
+    const DICT = {
+      es: {
+        'brand.title':'Joaquim Bernat Crespi',
+        'brand.subtitle':'TFG — Recreación e integración de espacios 3D en VR',
+        'meta.role':'Trabajo Fin de Grado — Ingeniería Multimedia',
+        'hero.headline':'Recreación y visualización 3D para RV — Experiencias exploratorias.',
+        'hero.subtitle':'Autor: Joaquim Bernat Crespi Menayo — Julio 2025',
+        'meta.tutor':'Tutor: Miguel Ángel Cazorla & Félix Escalona',
+        'meta.location':'Escuela Politécnica Superior — Alicante',
+        'cta.method':'Ver metodología','cta.results':'Ver resultados','cta.demo':'Ver demo (si está disponible)',
+        'feat.capture':'Captura','feat.capture.desc':'Insta360 X4, iPhone 13 y DJI Spark — estrategias 360° y aéreas para escenas interiores y exteriores.',
+        'feat.processing':'Procesado','feat.processing.desc':'COLMAP → Postshot → Gaussian Splatting — optimización de tamaño y rendimiento para VR.',
+        'feat.integration':'Integración','feat.integration.desc':'Unity + OpenXR + XR Interaction Toolkit — hand tracking, teletransporte y exploración.',
+        'nav.about':'Proyecto','nav.method':'Metodología','nav.results':'Resultados','nav.gallery':'Galería','nav.contact':'Contacto',
+        'btn.download':'Descargar PDF','btn.gallery':'Abrir galería','btn.tech':'Ver detalles técnicos','btn.fullpdf':'Descargar TFG (PDF)','btn.export':'Exportar ZIP listo (index + assets)','btn.openpdf':'Ver PDF completo',
+        'about.preamble':'Presento un estudio completo sobre captura, entrenamiento (Gaussian Splatting) y la integración de escenas 3D en Unity para visores standalone, con enfoque en experiencia exploratoria y aplicabilidad práctica.',
+        'method.title':'Metodología detallada','method.summary':'Metodología adaptada de Scrum: sprints quincenales con reuniones de seguimiento con tutores; herramientas de gestión y productividad como Trello, Clockify y Slack fueron integradas en el flujo de trabajo.',
+        'method.capture.title':'Captura (estrategias)','method.capture.desc':'Se combinaron capturas equirectangulares en 360° para espacios cerrados y fotografías convencionales en múltiples posiciones y alturas (por ejemplo, 29 capturas en espacios reducidos) para asegurar cobertura angular y detalle en texturas. Para exteriores se utilizaron vuelos de dron alrededor del elemento central (puente en Colmenar Viejo).',
+        'method.processing.title':'Procesado y entrenamiento','method.processing.desc':'Workflow: COLMAP (SfM) → Postshot (entrenamiento y configuración) → Gaussian Splatting (exportación de splats optimizados). En uno de los entrenamientos del dron se limitaron las imágenes a 1600px y kSteps a 30; tiempo de entrenamiento ≈ 2h24m (configuración de ejemplo).',
+        'method.integration.title':'Integración en Unity','method.integration.desc':'Partiendo de un proyecto base (UnityGaussianSplatting variants), se añadieron sistemas XR (OpenXR, XR Interaction Toolkit), manejo de GaussianSplats como assets, teletransporte, hand tracking y optimizaciones para Meta Quest 2.',
+        'method.tools.title':'Herramientas & dispositivos','tbl.device':'Dispositivo','tbl.specs':'Especificaciones clave','tbl.insta':'~72 MP equivalentes, FlowState, 8K capture (configuraciones usadas para 360°).','tbl.iphone':'Lente principal 12 MP, OIS, Smart HDR 4 — usado para capturas móviles de alta calidad.','tbl.spark':'Capturas aéreas para reconstrucciones exteriores; estrategia de orbitar el objeto central.','method.note':'Nota: varias configuraciones experimentales se registraron en el documento técnico.',
+        'results.title':'Resultados destacados','results.r1':'Escenarios recreados con alta fidelidad: biblioteca, sala de posgrado, laboratorio y puente (Colmenar Viejo). Las reconstrucciones permiten exploración y análisis espacial.','results.r2':'Integración en RV con teletransporte, hand tracking y herramientas de ambientación para aumentar inmersión y navegación.','results.r3':'Elección técnica: Gaussian Splatting demostró ser la mejor alternativa por su velocidad de renderizado y facilidad de exportación a motores (ventajas frente a NeRF en este contexto).','results.summary':'Se muestran capturas de configuración, ejemplos de parámetros y métricas de tiempo en la documentación técnica adjunta.',
+        'process.title':'Flujo de trabajo (timeline)','process.step1.title':'Planificación','process.step1.desc':'Sprints quincenales, objetivos y herramientas (Trello, Clockify).','process.step2.title':'Captura','process.step2.desc':'Recorridos 360°, tomas estructuradas y vuelos de dron para cobertura completa.','process.step3.title':'Entrenamiento','process.step3.desc':'COLMAP → Postshot → Gaussian Splatting: optimización de splats y compresión.','process.step4.title':'Integración','process.step4.desc':'Importación en Unity, prueba en Meta Quest 2 y ajuste de interacción.',
+        'gallery.title':'Galería / Capturas','gallery.hint':'Sustituye las miniaturas por screenshots exportadas del PDF o builds Unity para mostrar evidencia del trabajo.',
+        'tech.title':'Detalles técnicos & referencias','tech.note':'Listado con parámetros de entrenamiento, configuración Postshot y scripts usados para convertir panorámicas equirectangulares.','tech.papers':'Referencias clave incluidas en la bibliografía del TFG: NeRF, Instant-NGP, Gaussian Splatting, documentación de Unity y guías de captura.',
+        'contact.title':'Contacto','contact.author':'Joaquim Bernat Crespi Menayo — Autor del TFG (Julio 2025)','contact.call':'Incluye email, LinkedIn o GitHub para completar el footer de contacto.','footer':'© Joaquim Bernat — Portfolio generado a partir del TFG. Listo para desplegar en GitHub Pages / Netlify.'
+      },
+      en: {
+        'brand.title':'Joaquim Bernat Crespi',
+        'brand.subtitle':'FDP — Recreation and integration of 3D spaces in VR',
+        'meta.role':'Final Degree Project — Multimedia Engineering',
+        'hero.headline':'Recreation and visualization of 3D spaces for VR — Exploratory experiences.',
+        'hero.subtitle':'Author: Joaquim Bernat Crespi Menayo — July 2025',
+        'meta.tutor':'Supervisor: Miguel Ángel Cazorla & Félix Escalona',
+        'meta.location':'Polytechnic School — Alicante',
+        'cta.method':'View methodology','cta.results':'View results','cta.demo':'View demo (if available)',
+        'feat.capture':'Capture','feat.capture.desc':'Insta360 X4, iPhone 13 and DJI Spark — 360° and aerial strategies for indoor and outdoor scenes.',
+        'feat.processing':'Processing','feat.processing.desc':'COLMAP → Postshot → Gaussian Splatting — size & performance optimization for VR.',
+        'feat.integration':'Integration','feat.integration.desc':'Unity + OpenXR + XR Interaction Toolkit — hand tracking, teleportation and exploration.',
+        'nav.about':'Project','nav.method':'Methodology','nav.results':'Results','nav.gallery':'Gallery','nav.contact':'Contact',
+        'btn.download':'Download PDF','btn.gallery':'Open gallery','btn.tech':'Tech details','btn.fullpdf':'Download FDP (PDF)','btn.export':'Export ZIP (index + assets)','btn.openpdf':'Open full PDF',
+        'about.preamble':'I present a complete study on capture, training (Gaussian Splatting) and the integration of 3D scenes into Unity for standalone headsets, with a focus on exploratory experiences and practical applicability.',
+        'method.title':'Detailed methodology','method.summary':'Scrum-adapted methodology: biweekly sprints with follow-up meetings with supervisors; management and productivity tools such as Trello, Clockify and Slack were integrated into the workflow.',
+        'method.capture.title':'Capture (strategies)','method.capture.desc':'Combined equirectangular 360° captures for closed spaces with structured multi-angle photographs (for example, 29 captures in tight rooms) to ensure angular coverage and texture detail. For exteriors, drone flights orbiting the central element (Colmenar Viejo bridge) were used.',
+        'method.processing.title':'Processing & training','method.processing.desc':'Workflow: COLMAP (SfM) → Postshot (training and configuration) → Gaussian Splatting (export of optimized splats). In one drone training session images were limited to 1600px and kSteps set to 30; training time ≈ 2h24m (example configuration).',
+        'method.integration.title':'Unity integration','method.integration.desc':'Starting from a base project (UnityGaussianSplatting variants), XR systems (OpenXR, XR Interaction Toolkit) were added, GaussianSplats were handled as assets, teleportation and hand tracking implemented and optimizations applied for Meta Quest 2.',
+        'method.tools.title':'Tools & devices','tbl.device':'Device','tbl.specs':'Key specs','tbl.insta':'~72 MP equivalent, FlowState, 8K capture (settings used for 360°).','tbl.iphone':'12 MP main lens, OIS, Smart HDR 4 — used for high-quality mobile captures.','tbl.spark':'Aerial captures for exterior reconstructions; orbit strategy around the central object.','method.note':'Note: several experimental configurations are recorded in the technical document.',
+        'results.title':'Key results','results.r1':'High-fidelity reconstructed scenarios: library, postgrad room, laboratory and bridge (Colmenar Viejo). Reconstructions allow exploration and spatial analysis.','results.r2':'Integration in VR with teleportation, hand tracking and ambient tools to increase immersion and navigation.','results.r3':'Technical choice: Gaussian Splatting proved to be the best alternative due to rendering speed and ease of export to engines (advantages over NeRF in this context).','results.summary':'Configuration screenshots, parameter examples and timing metrics are shown in the attached technical documentation.',
+        'process.title':'Workflow (timeline)','process.step1.title':'Planning','process.step1.desc':'Biweekly sprints, goals and tools (Trello, Clockify).','process.step2.title':'Capture','process.step2.desc':'360° walks, structured shots and drone flights for full coverage.','process.step3.title':'Training','process.step3.desc':'COLMAP → Postshot → Gaussian Splatting: splat optimization and compression.','process.step4.title':'Integration','process.step4.desc':'Import into Unity, testing on Meta Quest 2 and interaction tuning.',
+        'gallery.title':'Gallery / Screenshots','gallery.hint':'Replace thumbnails with screenshots exported from the PDF or Unity builds to show project evidence.',
+        'tech.title':'Technical details & references','tech.note':'List with training parameters, Postshot configuration and equirectangular conversion scripts used.',
+        'tech.papers':'Key references included in the thesis bibliography: NeRF, Instant-NGP, Gaussian Splatting, Unity documentation and capture guides.',
+        'contact.title':'Contact','contact.author':'Joaquim Bernat Crespi Menayo — Project author (July 2025)','contact.call':'Include email, LinkedIn or GitHub to complete the contact footer.','footer':'© Joaquim Bernat — Portfolio generated from the FDP. Ready for deployment on GitHub Pages / Netlify.'
+      }
+    };
+
+    function applyLang(lang){ document.querySelectorAll('[data-i18n]').forEach(el=>{ const key = el.getAttribute('data-i18n'); if(DICT[lang] && DICT[lang][key]) el.innerHTML = DICT[lang][key]; }); localStorage.setItem('lang',lang); }
+    document.getElementById('lang-es').addEventListener('click',()=>applyLang('es'));
+    document.getElementById('lang-en').addEventListener('click',()=>applyLang('en'));
+    applyLang(localStorage.getItem('lang') || 'es');
+  </script>
+</body>
+</html>
