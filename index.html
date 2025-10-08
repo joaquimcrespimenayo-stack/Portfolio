@@ -124,9 +124,9 @@
           </div>
         </div>
 
-        <aside class="preview reveal float">
+        <aside class="preview reveal float" style="height: 360px;">
           <div class="frame" id="hero-frame">
-            <video autoplay loop muted playsinline>
+            <video autoplay loop muted playsinline style="width: 480px;">
               <source src="img/puente.mp4" type="video/mp4">
             </video>
             <div class="badge" data-i18n="badge.bilingual">Datos capturados mediante dron</div>
@@ -205,11 +205,9 @@
       </section>
 
       <section id="tech" class="card reveal" style="margin-top:18px">
-        <h3 data-i18n="tech.title">Detalles técnicos &amp; referencias</h3>
-
-          <div class="meta" data-i18n="tech.list"></div>
-        
+        <h3 data-i18n="tech.title">Detalles técnicos &amp; referencias</h3>        
         <p class="meta" data-i18n="tech.note">Listado con parámetros de entrenamiento, configuración Postshot y scripts usados para convertir panorámicas equirectangulares.</p>
+                  <div class="meta" data-i18n="tech.list"></div>
         <p style="margin-top:10px;color:var(--muted);font-size:13px" data-i18n="tech.papers">Referencias clave incluidas en la bibliografía de la documetnación: NeRF, Instant-NGP, Gaussian Splatting, documentación de Unity y guías de captura.</p>
         <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
           <button class="btn" id="download-full" data-i18n="btn.fullpdf">Descargar documento (PDF)</button>
