@@ -90,12 +90,12 @@
         <div class="card reveal">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
             <div>
-              <div class="meta" data-i18n="meta.role">Final Degree Project — Multimedia Engineering</div>
+              <div class="meta" data-i18n="meta.role">Multimedia Engineering</div>
               <h2 style="margin-top:10px" data-i18n="hero.headline">Recreación y visualización 3D para RV — Experiencias exploratorias.</h2>
               <div class="subtitle" data-i18n="hero.subtitle">Autor: Joaquim Bernat Crespi Menayo — Julio 2025</div>
             </div>
             <div style="text-align:right">
-              <div class="meta" data-i18n="meta.tutor">Tutor: Miguel Ángel Cazorla & Félix Escalona</div>
+              <div class="meta" data-i18n="meta.tutor">Supervisado por Miguel Ángel Cazorla & Félix Escalona</div>
               <div style="margin-top:8px;font-size:13px;color:var(--muted)" data-i18n="meta.location">Escuela Politécnica Superior — Alicante</div>
             </div>
           </div>
@@ -127,7 +127,7 @@
         <aside class="preview reveal float">
           <div class="frame" id="hero-frame">
             <img id="preview-img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='880' height='520'><rect width='100%' height='100%' fill='%2306151a'/><text x='50%' y='48%' fill='%238fbfc3' font-size='20' font-family='Arial' text-anchor='middle'>Galería / capturas (sustituir por imágenes del TFG)</text></svg>" alt="preview"/>
-            <div class="badge" data-i18n="badge.bilingual">Bilingüe ES / EN</div>
+            <div class="badge" data-i18n="badge.bilingual">Bilingüe</div>
           </div>
           <div style="padding:12px;border-top:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-between">
             <div style="display:flex;gap:8px">
@@ -141,7 +141,7 @@
 
       <section id="method" class="card reveal" style="margin-top:18px">
         <h3 data-i18n="method.title">Metodología detallada</h3>
-        <p class="meta" data-i18n="method.summary">Metodología adaptada de Scrum: sprints quincenales con reuniones de seguimiento con tutores; herramientas de gestión y productividad como Trello, Clockify y Slack fueron integradas en el flujo de trabajo.</p>
+        <p class="meta" data-i18n="method.summary">Metodología adaptada de Scrum: sprints quincenales con reuniones de seguimiento con los supervisores; herramientas de gestión y productividad como Trello, Clockify y Slack fueron integradas en el flujo de trabajo.</p>
 
         <div style="display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:14px">
           <div>
@@ -149,7 +149,7 @@
             <p data-i18n="method.capture.desc">Se combinaron capturas equirectangulares en 360° para espacios cerrados y fotografías convencionales en múltiples posiciones y alturas (por ejemplo, 29 capturas en espacios reducidos) para asegurar cobertura angular y detalle en texturas. Para exteriores se utilizaron vuelos de dron alrededor del elemento central (puente en Colmenar Viejo).</p>
 
             <h4 style="margin-top:12px" data-i18n="method.processing.title">Procesado y entrenamiento</h4>
-            <p data-i18n="method.processing.desc">Workflow: COLMAP (SfM) → Postshot (entrenamiento y configuración) → Gaussian Splatting (exportación de splats optimizados). En uno de los entrenamientos del dron se limitaron las imágenes a 1600px y kSteps a 30; tiempo de entrenamiento ≈ 2h24m (configuración de ejemplo).</p>
+            <p data-i18n="method.processing.desc">Workflow: COLMAP (SfM) → Postshot (entrenamiento y configuración) → Gaussian Splatting (exportación de splats optimizados). En uno de los entrenamientos del dron se limitaron las imágenes a 1600px y kSteps a 30; tiempo de entrenamiento ≈ 2h.</p>
 
             <h4 style="margin-top:12px" data-i18n="method.integration.title">Integración en Unity</h4>
             <p data-i18n="method.integration.desc">Partiendo de un proyecto base (UnityGaussianSplatting variants), se añadieron sistemas XR (OpenXR, XR Interaction Toolkit), manejo de GaussianSplats como assets, teletransporte, hand tracking y optimizaciones para Meta Quest 2.</p>
@@ -258,49 +258,49 @@
     const DICT = {
       es: {
         'brand.title':'Joaquim Bernat Crespi',
-        'brand.subtitle':'TFG — Recreación e integración de espacios 3D en VR',
+        'brand.subtitle':'Recreación e integración de espacios 3D en VR',
         'meta.role':'Trabajo Fin de Grado — Ingeniería Multimedia',
         'hero.headline':'Recreación y visualización 3D para RV — Experiencias exploratorias.',
         'hero.subtitle':'Autor: Joaquim Bernat Crespi Menayo — Julio 2025',
-        'meta.tutor':'Tutor: Miguel Ángel Cazorla & Félix Escalona',
+        'meta.tutor':'Supervisado por Miguel Ángel Cazorla & Félix Escalona',
         'meta.location':'Escuela Politécnica Superior — Alicante',
         'cta.method':'Ver metodología','cta.results':'Ver resultados','cta.demo':'Ver demo (si está disponible)',
         'feat.capture':'Captura','feat.capture.desc':'Insta360 X4, iPhone 13 y DJI Spark — estrategias 360° y aéreas para escenas interiores y exteriores.',
         'feat.processing':'Procesado','feat.processing.desc':'COLMAP → Postshot → Gaussian Splatting — optimización de tamaño y rendimiento para VR.',
         'feat.integration':'Integración','feat.integration.desc':'Unity + OpenXR + XR Interaction Toolkit — hand tracking, teletransporte y exploración.',
         'nav.about':'Proyecto','nav.method':'Metodología','nav.results':'Resultados','nav.gallery':'Galería','nav.contact':'Contacto',
-        'btn.download':'Descargar PDF','btn.gallery':'Abrir galería','btn.tech':'Ver detalles técnicos','btn.fullpdf':'Descargar TFG (PDF)','btn.export':'Exportar ZIP listo (index + assets)','btn.openpdf':'Ver PDF completo',
-        'about.preamble':'Presento un estudio completo sobre captura, entrenamiento (Gaussian Splatting) y la integración de escenas 3D en Unity para visores standalone, con enfoque en experiencia exploratoria y aplicabilidad práctica.',
-        'method.title':'Metodología detallada','method.summary':'Metodología adaptada de Scrum: sprints quincenales con reuniones de seguimiento con tutores; herramientas de gestión y productividad como Trello, Clockify y Slack fueron integradas en el flujo de trabajo.',
+        'btn.download':'Descargar PDF','btn.gallery':'Abrir galería','btn.tech':'Ver detalles técnicos','btn.fullpdf':'Descargar documentación (PDF)','btn.export':'Exportar ZIP listo (index + assets)','btn.openpdf':'Ver PDF completo',
+        'about.preamble':'Presento un estudio completo sobre captura, entrenamiento (Gaussian Splatting) y la integración de escenas 3D en Unity para visores independientes, con enfoque en experiencia exploratoria y aplicabilidad práctica.',
+        'method.title':'Metodología detallada','method.summary':'Metodología adaptada de Scrum: sprints quincenales con reuniones de seguimiento con los supervisores; herramientas de gestión y productividad como Trello, Clockify y Slack fueron integradas en el flujo de trabajo.',
         'method.capture.title':'Captura (estrategias)','method.capture.desc':'Se combinaron capturas equirectangulares en 360° para espacios cerrados y fotografías convencionales en múltiples posiciones y alturas (por ejemplo, 29 capturas en espacios reducidos) para asegurar cobertura angular y detalle en texturas. Para exteriores se utilizaron vuelos de dron alrededor del elemento central (puente en Colmenar Viejo).',
         'method.processing.title':'Procesado y entrenamiento','method.processing.desc':'Workflow: COLMAP (SfM) → Postshot (entrenamiento y configuración) → Gaussian Splatting (exportación de splats optimizados). En uno de los entrenamientos del dron se limitaron las imágenes a 1600px y kSteps a 30; tiempo de entrenamiento ≈ 2h24m (configuración de ejemplo).',
-        'method.integration.title':'Integración en Unity','method.integration.desc':'Partiendo de un proyecto base (UnityGaussianSplatting variants), se añadieron sistemas XR (OpenXR, XR Interaction Toolkit), manejo de GaussianSplats como assets, teletransporte, hand tracking y optimizaciones para Meta Quest 2.',
+        'method.integration.title':'Integración en Unity','method.integration.desc':'Partiendo de un proyecto base (UnityGaussianSplatting), se añadieron sistemas XR (OpenXR, XR Interaction Toolkit), manejo de GaussianSplats como assets, teletransporte, hand tracking y optimizaciones para Meta Quest 2.',
         'method.tools.title':'Herramientas & dispositivos','tbl.device':'Dispositivo','tbl.specs':'Especificaciones clave','tbl.insta':'~72 MP equivalentes, FlowState, 8K capture (configuraciones usadas para 360°).','tbl.iphone':'Lente principal 12 MP, OIS, Smart HDR 4 — usado para capturas móviles de alta calidad.','tbl.spark':'Capturas aéreas para reconstrucciones exteriores; estrategia de orbitar el objeto central.','method.note':'Nota: varias configuraciones experimentales se registraron en el documento técnico.',
         'results.title':'Resultados destacados','results.r1':'Escenarios recreados con alta fidelidad: biblioteca, sala de posgrado, laboratorio y puente (Colmenar Viejo). Las reconstrucciones permiten exploración y análisis espacial.','results.r2':'Integración en RV con teletransporte, hand tracking y herramientas de ambientación para aumentar inmersión y navegación.','results.r3':'Elección técnica: Gaussian Splatting demostró ser la mejor alternativa por su velocidad de renderizado y facilidad de exportación a motores (ventajas frente a NeRF en este contexto).','results.summary':'Se muestran capturas de configuración, ejemplos de parámetros y métricas de tiempo en la documentación técnica adjunta.',
         'process.title':'Flujo de trabajo (timeline)','process.step1.title':'Planificación','process.step1.desc':'Sprints quincenales, objetivos y herramientas (Trello, Clockify).','process.step2.title':'Captura','process.step2.desc':'Recorridos 360°, tomas estructuradas y vuelos de dron para cobertura completa.','process.step3.title':'Entrenamiento','process.step3.desc':'COLMAP → Postshot → Gaussian Splatting: optimización de splats y compresión.','process.step4.title':'Integración','process.step4.desc':'Importación en Unity, prueba en Meta Quest 2 y ajuste de interacción.',
         'gallery.title':'Galería / Capturas','gallery.hint':'Capturas de los espacios recreados digitalmente de principio a fin.',
         'tech.title':'Detalles técnicos & referencias','tech.note':'Listado con parámetros de entrenamiento, configuración Postshot y scripts usados para convertir panorámicas equirectangulares.','tech.papers':'Referencias clave incluidas en la bibliografía del TFG: NeRF, Instant-NGP, Gaussian Splatting, documentación de Unity y guías de captura.',
-        'contact.title':'Contacto','contact.author':'Joaquim Bernat Crespi Menayo — Autor del TFG (Julio 2025)','contact.call':'Incluye email, LinkedIn o GitHub para completar el footer de contacto.','footer':'© Joaquim Bernat Crespi Menayo'
+        'contact.title':'Contacto','contact.author':'Joaquim Bernat Crespi Menayo — Autor (Julio 2025)','contact.call':'Incluye email, LinkedIn o GitHub para completar el footer de contacto.','footer':'© Joaquim Bernat Crespi Menayo'
       },
       en: {
         'brand.title':'Joaquim Bernat Crespi',
-        'brand.subtitle':'FDP — Recreation and integration of 3D spaces in VR',
-        'meta.role':'Final Degree Project — Multimedia Engineering',
+        'brand.subtitle':'Recreation and integration of 3D spaces in VR',
+        'meta.role':'Multimedia Engineering',
         'hero.headline':'Recreation and visualization of 3D spaces for VR — Exploratory experiences.',
         'hero.subtitle':'Author: Joaquim Bernat Crespi Menayo — July 2025',
-        'meta.tutor':'Supervisor: Miguel Ángel Cazorla & Félix Escalona',
+        'meta.tutor':'Supervised by Miguel Ángel Cazorla & Félix Escalona',
         'meta.location':'Polytechnic School — Alicante',
         'cta.method':'View methodology','cta.results':'View results','cta.demo':'View demo (if available)',
         'feat.capture':'Capture','feat.capture.desc':'Insta360 X4, iPhone 13 and DJI Spark — 360° and aerial strategies for indoor and outdoor scenes.',
-        'feat.processing':'Processing','feat.processing.desc':'COLMAP → Postshot → Gaussian Splatting — size & performance optimization for VR.',
+        'feat.processing':'Processing','feat.processing.desc':'COLMAP → Postshot → Gaussian Splatting — size & performance optimization for VR.', 'badge.bilingual':'Bilingual',
         'feat.integration':'Integration','feat.integration.desc':'Unity + OpenXR + XR Interaction Toolkit — hand tracking, teleportation and exploration.',
         'nav.about':'Project','nav.method':'Methodology','nav.results':'Results','nav.gallery':'Gallery','nav.contact':'Contact',
-        'btn.download':'Download PDF','btn.gallery':'Open gallery','btn.tech':'Tech details','btn.fullpdf':'Download FDP (PDF)','btn.export':'Export ZIP (index + assets)','btn.openpdf':'Open full PDF',
+        'btn.download':'Download PDF','btn.gallery':'Open gallery','btn.tech':'Tech details','btn.fullpdf':'Download documentation (PDF)','btn.export':'Export ZIP (index + assets)','btn.openpdf':'Open full PDF',
         'about.preamble':'I present a complete study on capture, training (Gaussian Splatting) and the integration of 3D scenes into Unity for standalone headsets, with a focus on exploratory experiences and practical applicability.',
         'method.title':'Detailed methodology','method.summary':'Scrum-adapted methodology: biweekly sprints with follow-up meetings with supervisors; management and productivity tools such as Trello, Clockify and Slack were integrated into the workflow.',
         'method.capture.title':'Capture (strategies)','method.capture.desc':'Combined equirectangular 360° captures for closed spaces with structured multi-angle photographs (for example, 29 captures in tight rooms) to ensure angular coverage and texture detail. For exteriors, drone flights orbiting the central element (Colmenar Viejo bridge) were used.',
-        'method.processing.title':'Processing & training','method.processing.desc':'Workflow: COLMAP (SfM) → Postshot (training and configuration) → Gaussian Splatting (export of optimized splats). In one drone training session images were limited to 1600px and kSteps set to 30; training time ≈ 2h24m (example configuration).',
-        'method.integration.title':'Unity integration','method.integration.desc':'Starting from a base project (UnityGaussianSplatting variants), XR systems (OpenXR, XR Interaction Toolkit) were added, GaussianSplats were handled as assets, teleportation and hand tracking implemented and optimizations applied for Meta Quest 2.',
+        'method.processing.title':'Processing & training','method.processing.desc':'Workflow: COLMAP (SfM) → Postshot (training and configuration) → Gaussian Splatting (export of optimized splats). In one drone training session images were limited to 1600px and kSteps set to 30; training time ≈ 2h.',
+        'method.integration.title':'Unity integration','method.integration.desc':'Starting from a base project (UnityGaussianSplatting), XR systems (OpenXR, XR Interaction Toolkit) were added, GaussianSplats were handled as assets, teleportation and hand tracking implemented and optimizations applied for Meta Quest 2.',
         'method.tools.title':'Tools & devices','tbl.device':'Device','tbl.specs':'Key specs','tbl.insta':'~72 MP equivalent, FlowState, 8K capture (settings used for 360°).','tbl.iphone':'12 MP main lens, OIS, Smart HDR 4 — used for high-quality mobile captures.','tbl.spark':'Aerial captures for exterior reconstructions; orbit strategy around the central object.','method.note':'Note: several experimental configurations are recorded in the technical document.',
         'results.title':'Key results','results.r1':'High-fidelity reconstructed scenarios: library, postgrad room, laboratory and bridge (Colmenar Viejo). Reconstructions allow exploration and spatial analysis.','results.r2':'Integration in VR with teleportation, hand tracking and ambient tools to increase immersion and navigation.','results.r3':'Technical choice: Gaussian Splatting proved to be the best alternative due to rendering speed and ease of export to engines (advantages over NeRF in this context).','results.summary':'Configuration screenshots, parameter examples and timing metrics are shown in the attached technical documentation.',
         'process.title':'Workflow (timeline)','process.step1.title':'Planning','process.step1.desc':'Biweekly sprints, goals and tools (Trello, Clockify).','process.step2.title':'Capture','process.step2.desc':'360° walks, structured shots and drone flights for full coverage.','process.step3.title':'Training','process.step3.desc':'COLMAP → Postshot → Gaussian Splatting: splat optimization and compression.','process.step4.title':'Integration','process.step4.desc':'Import into Unity, testing on Meta Quest 2 and interaction tuning.',
