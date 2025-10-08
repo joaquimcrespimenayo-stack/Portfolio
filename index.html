@@ -124,7 +124,7 @@
           </div>
         </div>
 
-        <aside class="preview reveal float">
+        <aside class="preview reveal float" style="height: 360px;>
           <div class="frame" id="hero-frame">
             <video autoplay loop muted playsinline>
               <source src="img/puente.mp4" type="video/mp4">
@@ -206,7 +206,24 @@
 
       <section id="tech" class="card reveal" style="margin-top:18px">
         <h3 data-i18n="tech.title">Detalles técnicos &amp; referencias</h3>
-        <p class="meta" data-i18n="tech.note">Listado con parámetros de entrenamiento, configuración Postshot y scripts usados para convertir panorámicas equirectangulares.</p>
+        <div data-i18n="tech.list">
+          <ul>
+            <li>Entrenamiento con <strong>Gaussian Splatting</strong> optimizado: 1.600 px de resolución, 30 kSteps, duración media de 2h 24m.</li>
+            <li>Software de reconstrucción: <strong>COLMAP (Structure from Motion)</strong> y <strong>Postshot</strong> para preparación de datasets.</li>
+            <li>Motor de integración: <strong>Unity 2023.3</strong> con <em>OpenXR</em> y <em>XR Interaction Toolkit</em> para compatibilidad con Meta Quest 2.</li>
+            <li>Optimización de rendimiento en VR: compresión de texturas, reducción de splats redundantes y uso de LODs dinámicos.</li>
+            <li>Flujo de trabajo automatizado mediante scripts en Python para renombrado y alineación de imágenes de captura.</li>
+            <li>Herramientas adicionales: <em>Trello</em> y <em>Clockify</em> para gestión ágil y control de tiempo.</li>
+            <li>Bibliografía principal:
+              <ul>
+                <li>Müller et al. (2023) — <em>Instant Neural Graphics Primitives</em>.</li>
+                <li>Kerroch et al. (2024) — <em>3D Gaussian Splatting for Real-Time Rendering</em>.</li>
+                <li>Documentation — Unity XR & OpenXR Toolkit Guides.</li>
+                <li>Insta360 X4 — <em>Capture workflow and metadata standards</em>.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>        
         <p style="margin-top:10px;color:var(--muted);font-size:13px" data-i18n="tech.papers">Referencias clave incluidas en la bibliografía de la documetnación: NeRF, Instant-NGP, Gaussian Splatting, documentación de Unity y guías de captura.</p>
         <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
           <button class="btn" id="download-full" data-i18n="btn.fullpdf">Descargar documento (PDF)</button>
@@ -310,6 +327,24 @@
         'tech.title':'Technical details & references','tech.note':'List with training parameters, Postshot configuration and equirectangular conversion scripts used.',
         'tech.papers':'Key references included in the thesis bibliography: NeRF, Instant-NGP, Gaussian Splatting, Unity documentation and capture guides.',
         'contact.title':'Contact','contact.author':'Joaquim Bernat Crespi Menayo — Project author (July 2025)','contact.call':'Include email, LinkedIn or GitHub to complete the contact footer.','footer':'© Joaquim Bernat Crespi Menayo'
+        'tech.list': `
+        <ul>
+          <li>Optimized <strong>Gaussian Splatting</strong> training: 1,600 px resolution, 30 kSteps, average duration 2h 24m.</li>
+          <li>Reconstruction software: <strong>COLMAP (Structure from Motion)</strong> and <strong>Postshot</strong> for dataset preparation.</li>
+          <li>Integration engine: <strong>Unity 2023.3</strong> with <em>OpenXR</em> and <em>XR Interaction Toolkit</em> for Meta Quest 2 compatibility.</li>
+          <li>VR performance optimization: texture compression, redundant splat reduction, and dynamic LOD management.</li>
+          <li>Automated workflow via Python scripts for renaming and aligning capture images.</li>
+          <li>Additional tools: <em>Trello</em> and <em>Clockify</em> for agile task management and time tracking.</li>
+          <li>Main references:
+            <ul>
+              <li>Müller et al. (2023) — <em>Instant Neural Graphics Primitives</em>.</li>
+              <li>Kerroch et al. (2024) — <em>3D Gaussian Splatting for Real-Time Rendering</em>.</li>
+              <li>Documentation — Unity XR & OpenXR Toolkit Guides.</li>
+              <li>Insta360 X4 — <em>Capture workflow and metadata standards</em>.</li>
+            </ul>
+          </li>
+        </ul>
+        `
       }
     };
 
